@@ -10,11 +10,13 @@ import java.util.Objects;
 @Entity
 @Table(name = "card")
 public class Card extends BaseEntity {
+    private static final int CARD_NUMBER_LENGTH = 16;
+    private static final int CARD_NUMBER_IDENTIFIER_LENGTH = 26;
 
-    @Column(name = "card_number", nullable = false, unique = true, length = 16)
+    @Column(name = "card_number", nullable = false, unique = true, length = CARD_NUMBER_LENGTH)
     private String cardNumber;
 
-    @Column(name = "card_number_identifier", nullable = false, unique = true, length = 26)
+    @Column(name = "card_number_identifier", nullable = false, unique = true, length = CARD_NUMBER_IDENTIFIER_LENGTH)
     private String cardNumberIdentifier;
 
     public Card cardNumber(final String cardNumber) {

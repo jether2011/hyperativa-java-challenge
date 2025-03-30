@@ -7,6 +7,7 @@ import br.com.hyperativa.service.domain.exceptions.NotFoundException;
 import br.com.hyperativa.service.domain.exceptions.UserCreateException;
 import br.com.hyperativa.service.domain.services.UserService;
 import br.com.hyperativa.service.resources.repository.UserRepository;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -47,8 +48,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserGetDTO> getAllUsers(final Pageable pageable) {
+    public Page<UserGetDTO> getAllUsers(final Pageable pageable) {
         return userRepository.findAll(pageable)
-                .map(user -> new UserGetDTO(user.getUsername())).toList();
+                .map(user -> new UserGetDTO(user.getUsername()));
     }
 }

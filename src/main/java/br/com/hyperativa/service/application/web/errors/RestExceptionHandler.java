@@ -1,9 +1,6 @@
 package br.com.hyperativa.service.application.web.errors;
 
-import br.com.hyperativa.service.domain.exceptions.CardCreateException;
-import br.com.hyperativa.service.domain.exceptions.HyperativaBaseException;
-import br.com.hyperativa.service.domain.exceptions.NotFoundException;
-import br.com.hyperativa.service.domain.exceptions.UserCreateException;
+import br.com.hyperativa.service.domain.exceptions.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -82,7 +79,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(Exception.class)
+    @ExceptionHandler({Exception.class, FileUploadException.class})
     public ResponseEntity<Object> handleAllExceptions(Exception ex, WebRequest request) {
         Map<String, Object> body = new HashMap<>();
         body.put("error", "Internal Server Error");
