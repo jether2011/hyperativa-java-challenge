@@ -27,10 +27,10 @@ The application is designed to be a simple example of how to use Spring Boot, Sp
 
 ### Future Improvements
 - Security
- - - Add Authorities for the User
- - - Add the ROLEs to the generated JWT token
- - - When validating the token, retrieve the roles from it and add them to the Spring Security Authentication Context
- - - Use the `@Secured` annotation on methods to restrict access based on user roles and prevent unauthorized API usage
+   - Add Authorities for the User
+   - Add the ROLEs to the generated JWT token
+   - When validating the token, retrieve the roles from it and add them to the Spring Security Authentication Context
+   - Use the `@Secured` annotation on methods to restrict access based on user roles and prevent unauthorized API usage
 - Webfkux: Implement asynchronous requests to improve responsiveness
 - Actuator + Prometheus: Integrate Actuator with Prometheus to enhance observability and metrics tracking
 - Implement caching using a provider like Redis and utilize a distributed Hibernate second-level cache to improve application performance
