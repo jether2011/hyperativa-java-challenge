@@ -27,16 +27,16 @@ The application is designed to be a simple example of how to use Spring Boot, Sp
 
 ### Future Improvements
 - Security
- - Add Authorities for the User
- - Add the ROLEs to the generated JWT token
- - When the token gonna be validated, get the ROLE on it and add to the Spring Security Autenticad Context
- - Add the annotations `@Secured` on top of the method to prevent incorrect roles to use some API's
-- Webfkux (using async requests)
-- Actuator + Prometheus to improve observability and metrics
-- Apply cache using some profider like Redis and use distributed hibernate second level cache, both of those, improve the application performance
-- Add mappers for DTO to Entity or Entity to DTO
-- Scalling X using Docker Swarm or K8S and Y using both also 
-- Using a load balancer, calling, and discoveries, the application will achieve High Availability
-- For the cards upload file, for production mode, I'd like to refactor to use async processors consuming buckets like S3
-- For the current version, it's possíble to change the embedded webserver from `tomcat` to `undertow` (improves the thread requesting pool)
-- Using blocking requesting (Spring MVC) we can improve the high throuput using a Spring Event Driven JVM (Application Event Context) or messageing brokers such as RabbitMQ, Kafka, or other
+ - - Add Authorities for the User
+ - - Add the ROLEs to the generated JWT token
+ - - When validating the token, retrieve the roles from it and add them to the Spring Security Authentication Context
+ - - Use the `@Secured` annotation on methods to restrict access based on user roles and prevent unauthorized API usage
+- Webfkux: Implement asynchronous requests to improve responsiveness
+- Actuator + Prometheus: Integrate Actuator with Prometheus to enhance observability and metrics tracking
+- Implement caching using a provider like Redis and utilize a distributed Hibernate second-level cache to improve application performance
+- Create mappers to convert between DTOs and entities
+- Scale horizontally using Docker Swarm or Kubernetes, and utilize both for improved scalability
+- Achieve high availability through the use of a load balancer along with service discovery mechanisms + scalling
+- For production, refactor file uploads for cards to use asynchronous processors that consume from storage solutions like S3
+- Change the embedded web server from `Tomcat` to `Undertow` in the current version to improve thread request pooling
+- Blocking requests in Spring MVC can degrade performance or throughput. To enhance performance, consider using a Spring Event Driven JVM (Application Event Context) or messaging brokers like RabbitMQ or Kafka instead of relying on the Reactor project (Webflux).
