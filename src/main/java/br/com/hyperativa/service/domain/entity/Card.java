@@ -4,6 +4,8 @@ import io.azam.ulidj.ULID;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 
 import java.util.Objects;
 
@@ -13,6 +15,8 @@ public class Card extends BaseEntity {
     private static final int CARD_NUMBER_LENGTH = 16;
     private static final int CARD_NUMBER_IDENTIFIER_LENGTH = 26;
 
+    @Max(CARD_NUMBER_LENGTH)
+    @Min(CARD_NUMBER_LENGTH)
     @Column(name = "card_number", nullable = false, unique = true, length = CARD_NUMBER_LENGTH)
     private String cardNumber;
 

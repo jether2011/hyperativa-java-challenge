@@ -4,6 +4,7 @@ import br.com.hyperativa.service.application.config.security.jwt.JwtUtil;
 import br.com.hyperativa.service.domain.entity.User;
 import br.com.hyperativa.service.domain.entity.dto.UserCreateDTO;
 import br.com.hyperativa.service.domain.entity.dto.UserGetDTO;
+import br.com.hyperativa.service.domain.exceptions.UserAlreadyExistsException;
 import br.com.hyperativa.service.domain.services.UserService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -16,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.Serializable;
 
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @RestController
 @RequestMapping("/v1/auth")
@@ -45,9 +47,8 @@ public class AuthController {
 
     @PostMapping("/register")
     public ResponseEntity<UserGetDTO> register(@RequestBody @Valid LoginRequest request) {
-        final UserGetDTO user = userService.getUser(request.username());
-        if (user != null) {
-            return ResponseEntity.status(BAD_REQUEST).body(user);
+        if (userService.validateIfUserExists(request.username())) {
+            throw new UserAlreadyExistsException(String.format("User [ %s ] already exists", request.username()));
         }
 
         final UserGetDTO created = userService.createUser(

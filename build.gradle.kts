@@ -28,6 +28,8 @@ dependencies {
 	implementation("org.flywaydb:flyway-core")
 	implementation("org.flywaydb:flyway-mysql")
 	implementation("io.jsonwebtoken:jjwt-api:$jjwtApi")
+	implementation("io.jsonwebtoken:jjwt-impl:$jjwtApi")
+	implementation("io.jsonwebtoken:jjwt-jackson:$jjwtApi")
 	implementation("io.azam.ulidj:ulidj:$ulid")
 	runtimeOnly("com.mysql:mysql-connector-j")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")

@@ -6,6 +6,7 @@ import br.com.hyperativa.service.domain.processor.Processor;
 import br.com.hyperativa.service.domain.services.CardService;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -55,5 +56,5 @@ public class CardController {
     }
 }
 
-record CardRequest(@NotBlank String cardNumber) {
+record CardRequest(@NotBlank @Size(max = 16, min = 16) String cardNumber) {
 }

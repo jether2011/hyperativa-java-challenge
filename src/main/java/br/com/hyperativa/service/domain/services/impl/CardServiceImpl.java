@@ -9,9 +9,11 @@ import br.com.hyperativa.service.domain.services.CardService;
 import br.com.hyperativa.service.resources.repository.CardRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CardServiceImpl implements CardService {
     private final CardRepository cardRepository;
 

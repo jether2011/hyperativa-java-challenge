@@ -9,9 +9,9 @@ import br.com.hyperativa.service.domain.services.UserService;
 import br.com.hyperativa.service.resources.repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
-import java.util.List;
-
+@Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
@@ -45,6 +45,11 @@ public class UserServiceImpl implements UserService {
     public User getUserEntity(final String username) {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new NotFoundException("User not found"));
+    }
+
+    @Override
+    public boolean validateIfUserExists(final String username) {
+        return userRepository.findByUsername(username).isPresent();
     }
 
     @Override
